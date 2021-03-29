@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" media="all"
+              href="../css/plantilla.css" th:href="@{../css/plantilla.css}" />
+        <title>Carrito</title>
+
+    </head>
+    <body>
+
+
+
+    <header th:replace="public/html/plantilla.html::header" >
+
+    </header>
+
+
+
+        <div class="row">
+
+            <div class="card-body">
+                <div class="form-group row">
+
+                    <div class = "input-group">
+                        <a th:hidden="!${logged}" href="/productos/crear" class="btn btn-primary">Nuevo Producto</a>
+                    </div>
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="aux : ${products}">
+                        <td th:text="${aux.name}">Nombre</td>
+                        <td th:text="${aux.price}">Precio</td>
+                        <td th:text="${aux.quantity}">Cantidad</td>
+                        <td>
+                            <a th:hidden="!${logged}" th:text="Editar" th:href="'productos/editar/'+${aux.id}" th class="btn btn-secondary btn-sm"/> |
+                            <a th:hidden="!${logged}" th:text="Eliminar" th:href="'/productos/eliminar/'+${aux.id}" th class="btn btn-danger btn-sm"/> |
+                            <a th:hidden="${aux.quantity} > 0?false:true" th:text="Comprar" th:href="'/productos/comprar/'+${aux.id}" th class="btn btn-success btn-sm"></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!--<div th:replace="paginator::pager"></div>-->
+                <div th:fragment="pager">
+                    <ul class="pagination">
+                        <th:block th:each="pageNumber : ${body}">
+                            <li th:if="${pageNumber} == 1" class="page-item">
+                                <a class="page-link" th:href="${url} + '?page='+ 1" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item active" th:if="${pageNumber} == ${paginaactual}">
+                                <a class="page-link" th:text="${pageNumber}" href="#"></a>
+                            </li>
+                            <li class="page-item disabled" th:if="${pageNumber} == -1">
+                                <a class="page-link" href="#">...</a>
+                            </li>
+                            <li class="page-item" th:if="${pageNumber} != -1 and ${pageNumber} != ${paginaactual}">
+                                <a class="page-link" th:text="${pageNumber}" th:href="${url} + '?page='+ ${pageNumber}"></a>
+                            </li>
+                            <li th:if="${pageNumber == body.length}" class="page-item"  aria-label="Next">
+                                <a class="page-link" th:href="${url} + '?page='+ ${paginaactual + 2}">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div th:replace="public/html/plantilla.html::javascript">
+
+        </div>
+
+
+    </body>
+
+
+</html>

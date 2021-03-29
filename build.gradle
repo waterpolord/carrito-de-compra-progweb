@@ -3,7 +3,7 @@ plugins {
     id 'application'
     id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
-mainClassName='org.web.practica2.Main'
+mainClassName='org.web.carritodecompras.Main'
 group 'org.web'
 version '1.0-SNAPSHOT'
 
@@ -29,4 +29,5 @@ dependencies {
     //ORM - Hibernate.
     compile 'org.hibernate:hibernate-core:5.4.17.Final'
     compile 'org.hibernate:hibernate-entitymanager:5.4.17.Final'
+
 }
