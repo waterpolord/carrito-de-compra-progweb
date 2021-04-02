@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
     <head>
-        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link rel="stylesheet" type="text/css" media="all"
               href="../css/plantilla.css" th:href="@{../css/plantilla.css}" />
         <title>Carrito</title>
@@ -19,7 +19,7 @@
 
 
 
-        <div class="row">
+
 
             <div class="card-body">
                 <div class="form-group row">
@@ -28,29 +28,32 @@
                         <a th:hidden="!${logged}" href="/productos/crear" class="btn btn-primary">Nuevo Producto</a>
                     </div>
                 </div>
+                <div class="table-responsive-sm">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Cantidad</th>
 
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Cantidad</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr  th:each="aux : ${products}">
+                            <td th:text="${aux.name}">Nombre</td>
+                            <td th:text="${aux.price}">Precio</td>
+                            <td th:text="${aux.quantity}">Cantidad</td>
+                            <td>
+                                <a th:hidden="!${logged}" th:text="Editar" th:href="'productos/editar/'+${aux.id}" th class="btn btn-secondary btn-sm"/> |
+                                <a th:hidden="!${logged}" th:text="Eliminar" th:href="'/productos/eliminar/'+${aux.id}" th class="btn btn-danger btn-sm"/> |
+                                <a th:hidden="${aux.quantity} > 0?false:true" th:text="Comprar" th:href="'/productos/comprar/'+${aux.id}" th class="btn btn-success btn-sm"></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="aux : ${products}">
-                        <td th:text="${aux.name}">Nombre</td>
-                        <td th:text="${aux.price}">Precio</td>
-                        <td th:text="${aux.quantity}">Cantidad</td>
-                        <td>
-                            <a th:hidden="!${logged}" th:text="Editar" th:href="'productos/editar/'+${aux.id}" th class="btn btn-secondary btn-sm"/> |
-                            <a th:hidden="!${logged}" th:text="Eliminar" th:href="'/productos/eliminar/'+${aux.id}" th class="btn btn-danger btn-sm"/> |
-                            <a th:hidden="${aux.quantity} > 0?false:true" th:text="Comprar" th:href="'/productos/comprar/'+${aux.id}" th class="btn btn-success btn-sm"></a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+
                 <!--<div th:replace="paginator::pager"></div>-->
                 <div th:fragment="pager">
                     <ul class="pagination">
@@ -81,7 +84,7 @@
 
 
 
-        </div>
+
 
         <div th:replace="public/html/plantilla.html::javascript">
 

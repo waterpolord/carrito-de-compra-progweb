@@ -3,6 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link rel="stylesheet" type="text/css" media="all"
           href="../css/plantilla.css" th:href="@{../css/plantilla.css}" />
     <style>
@@ -251,7 +252,7 @@
 </head>
 
     <body>
-    <header th:replace="public/html/plantilla.html::header" ></header>
+        <header th:replace="public/html/plantilla.html::header" ></header>
 
 
         <div class="card bg-dark text-white" id="black-cover">
@@ -405,8 +406,7 @@
         <div th:replace="public/html/plantilla.html::javascript">
 
         </div>
-
+        </div>
     </body>
-
 
 </html>

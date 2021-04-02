@@ -4,7 +4,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link rel="stylesheet" type="text/css" media="all"
           href="public/css/plantilla.css" th:href="@{public/css/plantilla.css}" />
 
@@ -37,7 +37,7 @@
             </thead>
             <tbody>
             <tr th:each="aux : ${products}">
-                <td th:text="${aux.name}">Nombre</td>
+                <td scope="row" th:text="${aux.name}">Nombre</td>
                 <td th:text="${aux.price}">Precio</td>
                 <td th:text="${aux.quantity}">Cantidad</td>
                 <td>

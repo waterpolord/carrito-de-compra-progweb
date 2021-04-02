@@ -6,7 +6,11 @@ plugins {
 mainClassName='org.web.carritodecompras.Main'
 group 'org.web'
 version '1.0-SNAPSHOT'
-
+shadowJar{
+    baseName = 'app'
+    classifier = ''
+    archiveVersion = ''
+}
 repositories {
     mavenCentral()
 }
